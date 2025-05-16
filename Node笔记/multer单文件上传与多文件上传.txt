@@ -1,0 +1,53 @@
+Epxress 按照日期生成上传文件目录
+
+const express = require('express')
+const multer = require('multer')
+const sd = require('silly-datetime')
+const path = require('path')
+const mkdirp = require('mkdirp')
+const router = express.Router()
+
+const storage = multer.diskStorage({
+    //这里使用async是因为mkdirp是异步的
+    destination:saync(res,file,cb)=>{
+
+          // 使用sd包 转换时间  转为"20250501"格式
+         const day = sd.format(new Date(),YYYYMMDD);
+
+          // 使用node path模块 拼接需要生成文件夹路径 例：/module/upload/20250501
+         const dir = path,join('public/upload',day)
+
+          // 使用 mkdirp模块 生成文件夹
+          await mkdirp(dir);
+
+          // 将上传的文件 保存到 mkdirp生成的文件夹内 
+          cb(null,dir)
+    }
+})
+
+const upload = multer({storage:storage})
+// 单文件上传
+router.post('/doAdd',upload.single('pic'),(req,res)=>[
+       res.send({
+           file:req.file
+           body:req.body
+       })
+})
+
+
+module.exports = router
+
+
+## 多文件上传 
+
+const CpUpload = upload.fields([{name:'pic1',maxCount:1},{name:'pic2',maxCount:1}])
+
+router.get('/CpUpload',cpUpload,(req,res,next)=>{
+
+   res.send({
+      file:req.file,
+      body:req.body
+   })
+
+})
+

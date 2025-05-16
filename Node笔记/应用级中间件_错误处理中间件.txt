@@ -1,0 +1,27 @@
+Express 中间件
+
+##应用级中间件
+
+//next() 向下执行
+
+app.get('/',(req,res,next)=>{
+
+	res.send('hello1')
+
+	next()
+})
+
+app.get('/',(req,res,next)=>{
+
+	res.send('hello2')
+})
+
+##如果不添加 next() 运行到hellow1 则结束  添加next 将会运行到helle2
+
+
+##错误处理中间件
+//需要末尾
+app.use((req,res)=>{
+   res.status(404).render('404',{})
+})
+

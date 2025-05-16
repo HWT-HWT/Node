@@ -1,0 +1,45 @@
+Express session 的基本使用
+
+##安装 express-session
+
+npm install express-session --save
+
+const session = require('express-session')
+
+app.use(session({
+   //一个字符串 作为session的签名
+   secret:'12345',
+   //返回客户端的key名称
+   name:'name'
+   //设置前端cookie的属性
+   cookie:{maxAge:1000},
+   //强制保存即使没有变化
+   resave:false,
+   //强制将未初始化的session储存
+   saveUninitialized:true
+
+})
+
+app.get('/',(req,res)=>{
+   // 设置session
+   req.session.username = '张三'
+   res.send('设置session')
+})
+
+app.get('/getSession',(req,res)=>{
+   //获取session的名字
+   const SessionUsername =  req.session.username
+   res.send('session的名字：'+essionUsername ) 
+})
+
+app.get('/delete',(req,res)=>{
+   //销毁session
+   req.session.destroy((err)=>{
+
+   })
+})
+
+app.get('/CookieMaxAge',(req,res)=>{
+   //重新设置cookie的过期时间
+   req.session.cookie.maxAge = 0 
+})

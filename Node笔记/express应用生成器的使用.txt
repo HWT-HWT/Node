@@ -1,0 +1,9 @@
+Express应用生成器
+
+##  win+R件中的终端安装
+
+npm install -g express-generator
+
+## 生成express项目
+
+express --view=ejs pagename

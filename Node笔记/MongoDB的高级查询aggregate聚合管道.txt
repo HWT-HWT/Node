@@ -1,0 +1,61 @@
+$project  ##可以增删重命名修改文档结构
+
+db.order.aggregate(
+	[
+		##筛选出trade_no和all_price数据
+		{$project:{trade_no：1,all_price:1}}
+	]
+)
+
+
+$match ##用于过滤文档
+
+db.order.aggregate(
+	[
+		## (筛选出) 选出 大于90的的值
+		$match:{"all_price:"{$gte:90}}
+	]
+)
+
+$group ##统计数据
+
+db.order.aggregate(
+	[		##将_id一样的total全部相加
+		$group:{_id:"$order_id",total:{$sum:$'$num'}}
+	]
+)
+
+$sort ##调整排序
+
+db.order.aggregate(
+	[	 	         1 则是正序； -1 则是倒叙
+		$sort:{"all_price":-1}
+	]
+)
+
+$limit  ##只显示多少条数据
+
+db.order.aggregate(
+	[	
+		$sort:1
+	]
+)
+
+$lookup ##表关联 将两个的表合并数据
+
+db.order.aggregate(
+	[
+		{
+			$lookup:{		##添加合并的表
+					from："order_item",
+					##选择两表都有相同的id
+					localField:"order_id",
+					##选择两表都有相同的id
+					foreignField:"order_id",
+					##合并的内容数组的键名
+					as:"items"
+				}
+		}
+	]
+)
+

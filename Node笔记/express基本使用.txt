@@ -1,0 +1,40 @@
+express使用方法
+
+## 安装
+
+npm install express --save
+
+## 引入 配置
+
+const express  = require('express')
+const app = express()
+
+##简单路由配置
+app.get('/',(req,res)=>{
+
+   res.send('Hello World')
+
+})
+
+app.post('/',(req,res)=>{
+
+   res.send('Hello World')
+
+})
+
+app.put('/',(req,res)=>{
+
+   res.send('Hello World')
+
+})
+
+app.delete('/',(req,res)=>{
+
+   res.send('Hello World')
+
+})
+
+##设置端口号
+app.listen(3000,'127.0.0.1:3000')
+
+

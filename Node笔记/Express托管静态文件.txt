@@ -1,0 +1,11 @@
+express.static托管静态文件
+
+const express = require('express')
+
+const app = express
+
+##参数是文件的名字 
+app.use(express.static('public'))
+
+
+

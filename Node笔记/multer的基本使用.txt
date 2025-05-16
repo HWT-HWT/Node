@@ -1,0 +1,36 @@
+Muliter模块使用
+
+##下载三方包
+
+npm install --save multer
+
+##引入配置 
+
+const multer = require('multer')
+
+const storage = multer.diskStorage({
+   destination:(req,file,cb)=>{
+        // 'public/upload' 保存路径必须存在
+        cb(null,'public/upload')
+    }，
+    //修改文件名称
+    filename:(req,file,cb)=>{
+       const fileFormat = (file.originalname).split('.')
+       //时间戳修改成文件名
+       cb(null,Date.now()+'.'+fileFormat.length - 1)
+    }
+})
+
+const upload = multer({storage:storage})
+
+##使用multer
+
+router.post('/doadd',upload.single('pic'),(req,res)=>{
+   res.send({
+       file:req.file
+       body:req.body
+   })
+})
+
+
+

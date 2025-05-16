@@ -1,0 +1,32 @@
+Express Cookie基本使用
+
+##安装
+
+npm install cookie-parser --save
+
+##引入
+
+const cookieParser = require('cookie-parse')
+
+##设置插件 
+
+app.get('SetCookie',(req,res)=>{
+   // 设置cookie
+    req.cookie({
+
+	'name':'zhangsan',
+
+	## maxAge : 设置过期时间 
+	## httpOnly : 设置为true则 只有服务器修改
+	## path : 设置路径 路由不匹配则不发送Cookie
+	## secure : 值为true => http协议无效 https协议有效
+	{maxAge:1000,httpOnly:ture}
+
+     })
+})
+
+app.get('getCookie',(req,res)=>{
+   //获取 cookie
+   req.cookies.name 
+   res.send('getCookie')
+})

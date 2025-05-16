@@ -1,0 +1,29 @@
+Express session 负载均衡配置使用
+
+##需要安装 express-session 和 connect-mongo模块
+
+npm install express-session --save
+
+npm install connect-mongo --save
+
+##引入
+
+const session  = require('express-session')
+
+const MongoStore = require('connect-mongo')
+
+## 配置中间件
+
+app.use(session({
+  secret:'setKey'
+  resave:false
+  saveUninitialized:true
+  rolling:true
+  cookie:{
+      maxAge:10000
+   }
+   store:new MongoStore({
+        url:'mongodb://127.0.0.1:27017/student'
+        touchAfter:24*3600
+   })
+}))
