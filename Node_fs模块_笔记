@@ -1,0 +1,68 @@
+fs模块
+
+
+stat方法是检测文件夹还是文件的
+
+    使用规则--fs.stat((err,data)=>{})
+
+    检测是否是文件--isFlie()
+    检测是否是文件夹 -- isDirectory()
+
+
+mkdir方法是创建文件夹的
+
+    使用规则 -- fs.mkdir((err)=>{})
+
+
+writeFile方法是先创建文件夹再写入内容
+
+    writeFile('创建文件的地址跟名字 例 ./html/index.html','需要写入的数据',(err)=>{})
+
+    注意：它会删除在添加 假如当前文件已经存在了 则会删除当前文件在进行创建写入数据
+
+
+appendFile方法创建文件和给文件添加数据
+
+    使用规则 --fs.appendFile( "文件地址",'需要添加的数据',(err,)=>{})
+
+    注意：它不会删除文件 会直接添加在文件内 必须传入数据否则创建失败
+
+
+fs.readFile方法 读取文件里面的内容
+
+    使用规则:fs.readFild((err,data)=>{})
+
+    读取文件内容
+
+    注意：需要转为字符串  他会将文字转换文 buffer字符
+
+fs.readdir读取文件夹里面的全部的文件
+
+    使用规则fs.readdir('./html',(err,data)=>{})
+
+    读取文件夹里面的全部的文件 文件名
+
+fs.rename 修改文件名字
+                    被修改的文件名  修改的名字
+    使用规则 fs.rename('./axios.js','xxxx.js',(err)=>{})
+
+    修改文件名字
+
+fs.unlink 删除文件
+    
+    使用规则 fs.unlink('./xxx.js',(err)=>{})
+
+    删除文件夹
+
+fs.rmdir删除文件夹
+
+    使用规则 fs.rmdir('./html',(err)=>{})
+
+    删除文件夹 
+
+    注意：如果文件夹中有内容则需要将文件夹里面的内容全部删掉才可以删掉文件夹
+
+
+
+
+
