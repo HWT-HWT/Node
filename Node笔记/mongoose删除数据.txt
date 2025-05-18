@@ -1,0 +1,39 @@
+##创建数据模型
+//默认操作第三个集合的名称  第一个参数首字母必须大写
+const user = mongoose.model('Use',UserSchema,'use')
+
+##因为最新版本的 mongoose 需要使用异步 
+    要使用 "try" "catch" "async" "await"
+
+基本结构 
+//引入
+const mongoose = require('mongoose')
+
+//创建异步函数
+const main =  async ()=>{
+  
+ try{
+  // 定义表的结构
+  const UserSchema = mongoose.Schema({
+    name:String,
+    age:Number,
+    status:Numer,
+  })
+
+  //创建数据模型
+  const user = mongoose.model('Use',UserSchema,'use')
+
+  //修改数据 
+  const UserDeleteOne =  await user.deteleOne({name:'zhangsan'})
+  //打印修改结果
+  console.log(UserUpdateOne)
+
+   }catch(error){
+     console.log(error)
+   }
+}
+
+main()
+
+
+

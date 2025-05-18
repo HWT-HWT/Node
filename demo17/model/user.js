@@ -7,11 +7,20 @@ var UserSchema = mongoose.Schema({
             return 'a001' + params
         }
     },
-    age: Number,
+    age: {
+        type:Number,
+        index:true
+    },
     status: {
         type: Number,
         default: 1
     },
+    sex:{
+        type:String,
+        get(params){
+
+        }
+    }
 })
 
 module.exports =  mongoose.model('Users',UserSchema,'users')

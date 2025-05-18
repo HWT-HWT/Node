@@ -1,5 +1,6 @@
 // const newsModel = require('./model/news.js')
-const UserModel = require('./model/focus.js')
+// const UserModel = require('./model/focus.js')
+const userModel = require('./model/user')
 
 
 async function main() {
@@ -17,19 +18,17 @@ async function main() {
     // console.log(newsAdd);
 
     //保存数据
-     const user = new UserModel({
-      title:'    我是二个国际新闻    ',
-      author:'张三333',
-      pic:'http://ccc.com',
-      redirect:'www.baidu.com'
+     const user = new userModel({
+      name:'张三',
+      age:20
     })
     
-    // const userAdd = await user.save()
+    const userAdd = await user.save()
     
-    // console.log(userAdd);
+    console.log(userAdd);
 
 
-    console.log(user.title);
+    // console.log(user.title);
     
 
     // const userFind = await UserModel.find()

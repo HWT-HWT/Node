@@ -1,0 +1,64 @@
+##mongoose的使用
+
+##安装 
+
+npm i mongoose --save
+
+##进入并连接数据库
+
+const mongoose = require('mongoose')
+
+mongoose.connect(' mongodb://127.0.0.1:27017')
+
+##定义Schema  定义表的结构
+
+const UserSchema = mongoose.Schema({
+  name:String,
+  age:Number,
+  status:Numer,
+})
+
+##创建数据模型
+ 
+//默认操作第三个集合的名称  第一个参数首字母必须大写
+const user = mongoose.model('Use',UserSchema,'use')
+
+##因为最新版本的 mongoose 需要使用异步 
+    要使用 "try" "catch" "async" "await"
+
+基本结构 
+//引入
+const mongoose = require('mongoose')
+
+//创建异步函数
+const main =  async ()=>{
+  
+  // 定义表的结构
+  const UserSchema = mongoose.Schema({
+    name:String,
+    age:Number,
+    status:Numer,
+  })
+
+  //创建数据模型
+  const user = mongoose.model('Use',UserSchema,'use')
+
+   //查找数据
+   // 因为是异步操作所以需要使用 await
+   const UserFind =  await user.find({})
+
+   // 打印结果
+   console.log(UserFind)
+
+  const User =  UserSchema({
+    name:'zhangsan'
+    age:20,
+    status:1,
+  })
+
+}
+
+main()
+
+
+

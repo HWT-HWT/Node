@@ -1,0 +1,22 @@
+##mongoose 设置默认值 添加索引 去除前后空格
+
+const UserSchema = mongoose.Schema({
+  name:{
+    //定义类型
+    type:String,
+    // 去除前后空格
+    trim:true
+  },
+
+  age:{
+    type:Number,
+    //设置索引
+    index:true,
+   },
+
+  status:{
+    type:Number,
+    //设置默认值
+    default:1
+  }
+})
