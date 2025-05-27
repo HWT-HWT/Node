@@ -9,16 +9,20 @@ var UserSchema = mongoose.Schema({
     },
     age: {
         type:Number,
-        index:true
+        index:true,
+        required:true,
+        min:100,
+        max:150
     },
     status: {
-        type: Number,
-        default: 1
+        type: String,
+        // default: '1',
+        enum:['0','1','2']
     },
     sex:{
         type:String,
-        get(params){
-
+        validate:function(desc){
+            return desc.length >= 10
         }
     }
 })

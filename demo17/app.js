@@ -20,7 +20,9 @@ async function main() {
     //保存数据
      const user = new userModel({
       name:'张三',
-      age:20
+      age:110,
+      status:'1',
+      sex:'12312312312312312'
     })
     
     const userAdd = await user.save()
@@ -30,13 +32,12 @@ async function main() {
 
     // console.log(user.title);
     
-
     // const userFind = await UserModel.find()
     // console.log(userFind);
     
     
   } catch (error) {
-    console.log('出现问题');
+    console.log('出现问题'+error);
   }
   
 }
